@@ -1,5 +1,5 @@
 
-An example of how to run our codes and reproduce our results in this table.
+An example of how to run our codes and reproduce our results in Tab.1.
 ```bash
 cd 'standard training'
 python mdeat_cifar10.py --data-dir <path of the CIFAR-10 dataset> --fname output_pre --save-model
