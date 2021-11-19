@@ -26,26 +26,28 @@ Such a procedure can be illustrated as:
 
 
 ## Empirical performances
-*Code usages are provided in each corresponding folder.*
 
 ### Benchmarking on CIFAR-10
-<p align="center">
-    <img src="figs/tab1.png" width="500"\>
-</p>
 
 Our method achieves state-of-the-art training efficiency and robustness performance comparing existing AT solutions, including FREE, FAT, YOPO, PGD, MART, and TRADES, and the trained networks show substantial robustness against various strong adversarial attacks. 
 Moreover, the proposed acceleration strategy can directly work with existing AT methods and improve their training efficiency.
 
+<p align="center">
+    <img src="figs/tab1.png" width="500"\>
+</p>
+
+
 
 ### Scalable to ImageNet
-Our strategy is also capable of being deployed on large-scale dataset  ImageNet.
+
+Our strategy is also capable of being deployed on large-scale dataset ImageNet.
 
 
 <p align="center">
     <img src="figs/tab2.png" width="500"\>
 </p>
 
-
+*Code usages are provided in each corresponding folder.*
 
 ## Future direction
 In this work, we have mainly explored $\ell_\infty$ norm based adversarial training, and our next step is to generalize the magnitude guided strategy into threat models under other metrics.
