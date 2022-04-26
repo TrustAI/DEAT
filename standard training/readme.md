@@ -22,5 +22,5 @@ python aalog_reader.py --model-dir <output folder> --log-name <default is aa_sco
 
 - The code for Friendly Adversarial training is publicly released at [here](https://github.com/zjfheart/Friendly-Adversarial-Training).
 
-- Amata's code hasn't been released, So we re-implement it to make comparison. We also find that Amata's core strategy is equivalent to our DEAT-$d$, where $d$ is given by $|\frac{T}{K_\text{max}-K_\text{min}}|$, $T$ is the number of epochs, $K_\text{max}$ and $K_\text{min}$ are manually defined bounds on adversarial iterations. 
+- Amata's code hasn't been released, so we re-implement it to make comparison. We also find that Amata's core strategy is equivalent to our DEAT-$d$, where $d$ is given by $|\frac{T}{K_\text{max}-K_\text{min}}|$, $T$ is the number of epochs, $K_\text{max}$ and $K_\text{min}$ are manually defined bounds on adversarial iterations. 
 

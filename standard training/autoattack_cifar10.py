@@ -8,6 +8,8 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 from wideresnet import WideResNet
 from preact_resnet import PreActResNet18
+from vgg import VGG16,VGG19
+from mobilenet import mobilenetV3_small
 from autoattack import AutoAttack
 
 
@@ -48,6 +50,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--batch-size', default=200, type=int)
 parser.add_argument('--normalization', default='std', type=str, choices=['std', '01','+-1'])
 parser.add_argument('--data-dir', default='/mnt/storage0_8/torch_datasets/cifar-data', type=str)
+parser.add_argument('--model', default='pre', type=str, choices=['pre', 'wide', 'vgg16', 'vgg19', 'mobile'])
 parser.add_argument('--model-dir', default='mdeat_out', type=str)
 parser.add_argument('--model-name', default='model_pre', type=str)
 parser.add_argument('--log-name', default='aa_score', type=str)
@@ -67,7 +70,14 @@ log_path = os.path.join(args.model_dir,args.log_name+'.log')
 test_loader = get_test_loader(args.data_dir, args.batch_size)
 model_path = os.path.join(args.model_dir,args.model_name+'.pth')
 checkpoint = torch.load(model_path)
-net = PreActResNet18().cuda()
+if args.model == 'pre':
+    net = PreActResNet18().cuda()
+elif args.model == 'vgg19':
+    net = VGG19().cuda()
+elif args.model == 'vgg16':
+    net = VGG16().cuda()
+elif args.model == 'mobile':
+    net = mobilenetV3_small().cuda()
 net = torch.nn.DataParallel(net).cuda()
 net.load_state_dict(checkpoint)
 model_test = nn.Sequential(Normalize(mean=mean, std=std), net)

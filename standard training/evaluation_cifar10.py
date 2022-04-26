@@ -9,6 +9,8 @@ from torchvision import datasets, transforms
 
 from preact_resnet import PreActResNet18
 from wideresnet import WideResNet
+from vgg import VGG16,VGG19
+from mobilenet import mobilenetV3_small
 from utils import *
 
 parser = argparse.ArgumentParser()
@@ -17,7 +19,7 @@ parser.add_argument('--normalization', default='std', type=str, choices=['std', 
 parser.add_argument('--data-dir', default='/mnt/storage0_8/torch_datasets/cifar-data', type=str)
 parser.add_argument('--model-dir', default='mdeat_out', type=str)
 parser.add_argument('--model-name', default='model_pre', type=str)
-parser.add_argument('--model', default='pre', type=str, choices=['pre', 'wide'])
+parser.add_argument('--model', default='pre', type=str, choices=['pre', 'wide', 'vgg16', 'vgg19', 'mobile'])
 parser.add_argument('--wide-factor', default=10, type=int, help='Widen factor')
 args = parser.parse_args()
 
@@ -36,6 +38,12 @@ model_path = os.path.join(args.model_dir,args.model_name+'.pth')
 checkpoint = torch.load(model_path)
 if args.model == 'pre':
     model_test = PreActResNet18().cuda()
+elif args.model == 'vgg16':
+    model_test = VGG16().cuda()
+elif args.model == 'vgg19':
+    model_test = VGG19().cuda()
+elif args.model == 'mobile':
+    model_test = mobilenetV3_small().cuda()
 elif args.model == 'wide':
     model_test = WideResNet(34, 10, widen_factor=args.wide_factor, dropRate=0.0)
 model_test = torch.nn.DataParallel(model_test).cuda()

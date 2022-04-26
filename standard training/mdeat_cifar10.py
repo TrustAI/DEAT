@@ -16,6 +16,8 @@ from torch.utils.data import DataLoader, Dataset, TensorDataset
 
 from preact_resnet import PreActResNet18
 from wideresnet import WideResNet
+from vgg import VGG16, VGG19
+from mobilenet import mobilenetV3_small
 from utils import *
 
 
@@ -25,7 +27,7 @@ def get_args():
     parser.add_argument('--data-dir', default='/mnt/storage0_8/torch_datasets/cifar-data', type=str)
     parser.add_argument('--epochs', default=50, type=int)
     parser.add_argument('--lr-schedule', default='multistep', type=str, choices=['cyclic', 'flat', 'multistep'])
-    parser.add_argument('--model', default='pre', type=str, choices=['pre', 'wide'])
+    parser.add_argument('--model', default='pre', type=str, choices=['pre', 'wide', 'vgg16', 'vgg19', 'mobile'])
     parser.add_argument('--normalization', default='std', type=str, choices=['std', '01','+-1'])
     parser.add_argument('--wide-factor', default=10, type=int, help='Widen factor')
     parser.add_argument('--lr-min', default=0.0, type=float)
@@ -80,6 +82,12 @@ def main():
 
     if args.model == 'pre':
         model = PreActResNet18().cuda()
+    elif args.model == 'vgg19':
+        model = VGG19().cuda()
+    elif args.model == 'vgg16':
+        model = VGG16().cuda()
+    elif args.model == 'mobile':
+        model = mobilenetV3_small().cuda()
     elif args.model == 'wide':
         model = WideResNet(34, 10, widen_factor=args.wide_factor, dropRate=0.0)
     model = torch.nn.DataParallel(model).cuda()
@@ -94,7 +102,7 @@ def main():
         lr_lamdbda = lambda t: 1
         scheduler = torch.optim.lr_scheduler.LambdaLR(opt,lr_lamdbda)
     elif args.lr_schedule == 'multistep':
-        if args.model == 'pre':
+        if args.model != 'wide':
             scheduler = torch.optim.lr_scheduler.MultiStepLR(opt, milestones=[lr_steps / 2, lr_steps * 4 / 5], gamma=0.1)
         else:
             scheduler = torch.optim.lr_scheduler.MultiStepLR(opt, milestones=[lr_steps / 2, lr_steps * 3 / 4], gamma=0.1)
@@ -158,6 +166,12 @@ def main():
         # Evaluation
         if args.model == 'pre':
             model_test = PreActResNet18().cuda()
+        elif args.model == 'vgg19':
+            model_test = VGG19().cuda()
+        elif args.model == 'vgg16':
+            model_test = VGG16().cuda()
+        elif args.model == 'mobile':
+            model_test = mobilenetV3_small().cuda()
         elif args.model == 'wide':
             model_test = WideResNet(34, 10, widen_factor=args.wide_factor, dropRate=0.0)
         model_test = torch.nn.DataParallel(model_test).cuda()
