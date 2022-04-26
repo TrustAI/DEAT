@@ -37,7 +37,7 @@ def get_args():
     parser.add_argument('--normalization', default='std', type=str, choices=['std', '01','+-1'])
     parser.add_argument('--init-tau', default=8, type=float)
     parser.add_argument('--max-iteration', default=7, type=int)
-    parser.add_argument('--delta-init', default='uniform', choices=['zero', 'uniform', 'normal', 'bernoulli'],
+    parser.add_argument('--delta-init', default='zero', choices=['zero', 'uniform', 'normal', 'bernoulli'],
         help='Perturbation initialization method')
     parser.add_argument('--alpha', default=2., type=float, help='Step size')
     parser.add_argument('--fname', default='output', type=str)
