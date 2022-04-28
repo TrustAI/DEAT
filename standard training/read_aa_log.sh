@@ -1,4 +1,4 @@
-log_name='aa_score_vgg'
+log_name='aa_score_vgg16'
 
 python aalog_reader.py --model-dir mdeat_out --log-name $log_name
 python aalog_reader.py --model-dir mtrades_out --log-name $log_name

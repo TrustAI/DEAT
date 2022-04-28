@@ -1,0 +1,33 @@
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating mdeat_out/model_vgg16.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+0.9271 	 0.4327 	  0.8705 	  0.4381
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating mtrades_out/model_vgg16.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.1961 	 0.4493 	  1.1517 	  0.4212
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating mmart_out/model_vgg16.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.4670 	 0.4598 	  1.4232 	  0.3965
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating mpgd_out/model_vgg16.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+0.9742 	 0.4068 	  0.9123 	  0.4114
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating free_out/model_vgg164.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+0.9718 	 0.4424 	  0.9132 	  0.4386
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating free_out/model_vgg166.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+0.9903 	 0.4555 	  0.9359 	  0.4500
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating free_out/model_vgg168.pth

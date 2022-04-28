@@ -1,5 +1,5 @@
-cuda='3'
-model='vgg'
+cuda='0'
+model='vgg16'
 model_name='model_'$model
 
 batch_replay='
