@@ -1,0 +1,50 @@
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating ablation_12_out/model_pre.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+0.8873 	 0.4859 	  0.8393 	  0.4798
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating ablation_8_out/model_pre.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+0.8899 	 0.4797 	  0.8400 	  0.4766
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating ablation_normal_out/model_pre.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+0.8633 	 0.4587 	  0.8092 	  0.4637
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating ablation_zero_out/model_pre.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+0.9166 	 0.4927 	  0.8683 	  0.4865
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating ablation_flat_out/model_pre.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.2503 	 0.3541 	  1.2064 	  0.3495
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating ablation_cyclic_out/model_pre.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+0.8708 	 0.4924 	  0.8208 	  0.4888
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating ablation_12_out/model_pre.pth, 0.8367
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating ablation_8_out/model_pre.pth, 0.8372
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating ablation_normal_out/model_pre.pth, 0.8573
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating ablation_zero_out/model_pre.pth, 0.8195
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating ablation_flat_out/model_pre.pth, 0.662
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating ablation_cyclic_out/model_pre.pth, 0.8397

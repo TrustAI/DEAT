@@ -1,23 +1,6 @@
-Files already downloaded and verified
-Files already downloaded and verified
-Evaluating mdeat_out/model_vgg16.pth
-PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
-0.9271 	 0.4327 	  0.8705 	  0.4381
-Files already downloaded and verified
-Files already downloaded and verified
-Evaluating mtrades_out/model_vgg16.pth
-PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
-1.1961 	 0.4493 	  1.1517 	  0.4212
-Files already downloaded and verified
-Files already downloaded and verified
-Evaluating mmart_out/model_vgg16.pth
-PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
-1.4670 	 0.4598 	  1.4232 	  0.3965
-Files already downloaded and verified
-Files already downloaded and verified
-Evaluating mpgd_out/model_vgg16.pth
-PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
-0.9742 	 0.4068 	  0.9123 	  0.4114
+======================================================
+VGG16
+======================================================
 Files already downloaded and verified
 Files already downloaded and verified
 Evaluating free_out/model_vgg164.pth
@@ -31,3 +14,139 @@ PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
 Files already downloaded and verified
 Files already downloaded and verified
 Evaluating free_out/model_vgg168.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+0.9363 	 0.4560 	  0.8839 	  0.4519
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating pgd_out/model_vgg16.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.0847 	 0.4523 	  1.0305 	  0.4266
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating mart_out/model_vgg16.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.4765 	 0.4425 	  1.4363 	  0.3833
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating trades_out/model_vgg16.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.3382 	 0.3989 	  1.2984 	  0.3659
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating fat_out/model_vgg16.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+0.9910 	 0.4450 	  0.9350 	  0.4311
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating fat_mart_out/model_vgg16.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.2126 	 0.4240 	  1.1656 	  0.3837
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating fat_trade_out/model_vgg16.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.1618 	 0.4391 	  1.1169 	  0.4160
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating amata_out/model_vgg16.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.0591 	 0.4551 	  1.0079 	  0.4372
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating mdeat_out/model_vgg16.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+0.9835 	 0.4556 	  0.9243 	  0.4443
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating mtrades_out/model_vgg16.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.1961 	 0.4494 	  1.1520 	  0.4211
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating mmart_out/model_vgg16.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.4670 	 0.4602 	  1.4233 	  0.3972
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating mpgd_out/model_vgg16.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.0529 	 0.4574 	  1.0053 	  0.4421
+
+======================================================
+DenseNet
+======================================================
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating mdeat_out/model_dense.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+0.9186 	 0.4516 	  0.8692 	  0.4522
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating mtrades_out/model_dense.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.2574 	 0.4334 	  1.2152 	  0.3977
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating mmart_out/model_dense.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.3905 	 0.4746 	  1.3455 	  0.4208
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating mpgd_out/model_dense.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.0977 	 0.4428 	  1.0539 	  0.4316
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating free_out/model_dense4.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+0.9489 	 0.4483 	  0.8955 	  0.4441
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating free_out/model_dense6.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+0.9787 	 0.4671 	  0.9270 	  0.4590
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating free_out/model_dense8.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+0.9774 	 0.4667 	  0.9306 	  0.4576
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating pgd_out/model_dense.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.1577 	 0.4340 	  1.1133 	  0.4150
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating mart_out/model_dense.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.4961 	 0.4462 	  1.4606 	  0.3961
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating trades_out/model_dense.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.7197 	 0.2399 	  1.6932 	  0.2120
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating fat_out/model_dense.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.0491 	 0.4190 	  0.9996 	  0.4116
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating fat_mart_out/model_dense.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.1386 	 0.4335 	  1.0915 	  0.4009
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating fat_trade_out/model_dense.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.1983 	 0.4275 	  1.1536 	  0.3995
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating amata_out/model_dense.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.1245 	 0.4343 	  1.0803 	  0.4190
+Files already downloaded and verified
+Files already downloaded and verified
+Evaluating trades_out/model_dense.pth
+PGD100 Loss 	 PGD100 Acc 	 CW20 Loss 	 CW20 Acc
+1.2764 	 0.4250 	  1.2355 	  0.3930

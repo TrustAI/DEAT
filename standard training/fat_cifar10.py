@@ -12,14 +12,14 @@ import logging
 from preact_resnet import PreActResNet18
 from wideresnet import WideResNet
 from vgg import VGG16,VGG19
-from mobilenet import mobilenetV3_small
+from densenet import DenseNet121
 from earlystop import earlystop
 from utils import *
 
 parser = argparse.ArgumentParser(description='PyTorch Friendly Adversarial Training')
 parser.add_argument('--batch-size', type=int, default=128)
 parser.add_argument('--epochs', type=int, default=50, metavar='N', help='number of epochs to train')
-parser.add_argument('--model', default='pre', type=str, choices=['pre', 'wide', 'vgg16', 'vgg19', 'mobile'])
+parser.add_argument('--model', default='pre', type=str, choices=['pre', 'wide', 'vgg16', 'vgg19', 'dense'])
 parser.add_argument('--wide-factor', default=10, type=int, help='Widen factor')
 parser.add_argument('--weight_decay', '--wd', default=5e-4, type=float, metavar='W')
 parser.add_argument('--lr', type=float, default=0.05, metavar='LR', help='learning rate')
@@ -130,8 +130,8 @@ elif args.model == 'vgg19':
     model = VGG19().cuda()
 elif args.model == 'vgg16':
     model = VGG16().cuda()
-elif args.model == 'mobile':
-    model = mobilenetV3_small().cuda()
+elif args.model == 'dense':
+    model = DenseNet121().cuda()
 elif args.model == 'wide':
     model = WideResNet(34, 10, widen_factor=args.wide_factor, dropRate=0.0)
 model = torch.nn.DataParallel(model).cuda()
@@ -155,8 +155,8 @@ for epoch in range(args.epochs):
         model_test = VGG19().cuda()
     elif args.model == 'vgg16':
         model_test = VGG16().cuda()
-    elif args.model == 'mobile':
-        model_test = mobilenetV3_small().cuda()
+    elif args.model == 'dense':
+        model_test = DenseNet121().cuda()
     elif args.model == 'wide':
         model_test = WideResNet(34, 10, widen_factor=args.wide_factor, dropRate=0.0)
     model_test = torch.nn.DataParallel(model_test).cuda()
