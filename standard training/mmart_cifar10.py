@@ -61,7 +61,9 @@ torch.backends.cudnn.deterministic = False
 torch.backends.cudnn.benchmark = True
 device = torch.device("cuda")
 epsilon = (args.epsilon / 255.)
+alpha = (args.alpha / 255.)
 step_size = (args.alpha / 255.)
+
 if args.normalization == 'std':
     mu = torch.tensor(cifar10_mean).view(3,1,1).cuda()
     std = torch.tensor(cifar10_std).view(3,1,1).cuda()
@@ -215,6 +217,9 @@ def main():
         cur_lr = adjust_learning_rate(optimizer, epoch, args.epochs)
 
         # adversarial training
+
+
+
         train_acc, train_loss, train_n, grad_mag  = train(args, model, device, train_loader, num_steps, optimizer, epoch)
         end_epoch_time = time.time()
         epoch_time = end_epoch_time - start_epoch_time
@@ -242,16 +247,23 @@ def main():
         # logger.info('%d \t %.1f \t \t %.4f \t %.4f \t %.4f \t %.4f\t %.4f',
         #     epoch, epoch_time, cur_lr, train_loss/train_n, val_acc,
         #     grad_mag, val_adv_acc)
-        logger.info(f'{epoch}\t{epoch_time:.1f}\t{cur_lr:.4f}\t{num_steps:d}\t{train_loss/train_n:.4f}\t{train_acc/train_n:.4f}\t{val_acc:.4f}\t{grad_mag:.4f}\t{val_adv_acc:.4f}')
+        logger.info(f'{epoch}\t{epoch_time:.1f}\t{cur_lr:.4f}\t{num_steps+1:d}\t{train_loss/train_n:.4f}\t{train_acc/train_n:.4f}\t{val_acc:.4f}\t{grad_mag:.4f}\t{val_adv_acc:.4f}')
 
         if epoch == 0:
             num_steps += 1
+            step_size = epsilon / num_steps
+            if step_size < alpha:
+                step_size = alpah
         elif epoch == 1:
             increase_threshold = args.gamma * grad_mag
-        elif ((grad_mag > increase_threshold and num_steps < args.num_steps)
-                or (step_size * num_steps < args.epsilon)):
+        # elif ((grad_mag > increase_threshold and num_steps < args.num_steps)
+        #         or (step_size * num_steps < args.epsilon)):
+        elif (grad_mag > increase_threshold and num_steps < args.num_steps):
             increase_threshold = args.gamma * grad_mag
             num_steps += 1
+            step_size = epsilon / num_steps
+            if step_size < alpha:
+                step_size = alpah
 
         if val_adv_acc > highest_acc and args.save_model:
             highest_acc = val_adv_acc

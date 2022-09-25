@@ -68,6 +68,7 @@ def main():
     train_loader, test_loader = get_loaders(args.data_dir, args.batch_size)
     epsilon = (args.epsilon / 255.)
     alpha = (args.alpha / 255.)
+    cur_alpha = (args.alpha / 255.)
     init_tau = (args.init_tau / 255.)
     if args.normalization == 'std':
         mu = torch.tensor(cifar10_mean).view(3,1,1).cuda()
@@ -107,6 +108,7 @@ def main():
 
     # Training
     nb_attack_iteration = 0
+    highest_idx = 0
     highest_acc = 0
     train_time = 0
     logger.info('Epoch \t Seconds \t LR \t BP\t Train Loss \t Train Acc \t Val Acc \t MG \t PGD Acc')
@@ -136,7 +138,7 @@ def main():
                     loss = F.cross_entropy(output, y)
                     loss.backward()
                     grad = delta.grad.detach()
-                    delta.data = torch.clamp(delta + alpha * torch.sign(grad), min=-epsilon, max=epsilon)
+                    delta.data = torch.clamp(delta + cur_alpha * torch.sign(grad), min=-epsilon, max=epsilon)
                     delta.data = clamp(delta, lower_limit - X, upper_limit - X)
                     delta.grad.zero_()
                     # if rr + 1 < nb_attack_iteration:
@@ -185,16 +187,24 @@ def main():
         # logger.info('%d \t %.1f \t \t %.4f \t %.4f \t %.4f \t %.4f\t %.4f \t %.4f',
             # epoch, epoch_time, lr, nb_attack_iteration, train_loss/train_n, train_acc/train_n, val_acc,
             # grad_mag, val_adv_acc)
-        logger.info(f'{epoch}\t{epoch_time:.1f}\t{lr:.4f}\t{nb_attack_iteration:d}\t{train_loss/train_n:.4f}\t{train_acc/train_n:.4f}\t{val_acc:.4f}\t{grad_mag:.4f}\t{val_adv_acc:.4f}')
+        logger.info(f'{epoch}\t{epoch_time:.1f}\t{lr:.4f}\t{nb_attack_iteration+1:d}\t{train_loss/train_n:.4f}\t{train_acc/train_n:.4f}\t{val_acc:.4f}\t{grad_mag:.4f}\t{val_adv_acc:.4f}')
 
         if epoch == 0:
             nb_attack_iteration += 1
+            cur_alpha = epsilon / nb_attack_iteration
+            if cur_alpha < alpha:
+                cur_alpha = alpah
         elif epoch == 1:
             increase_threshold = args.gamma * grad_mag
-        elif ((grad_mag > increase_threshold and nb_attack_iteration < args.max_iteration)
-                or (args.alpha * nb_attack_iteration < args.epsilon)):
+        # elif ((grad_mag > increase_threshold and nb_attack_iteration < args.max_iteration)
+        #         or (args.alpha * nb_attack_iteration < args.epsilon)):
+
+        elif (grad_mag > increase_threshold and nb_attack_iteration < args.max_iteration):
             increase_threshold = args.gamma * grad_mag
             nb_attack_iteration += 1
+            cur_alpha = epsilon / nb_attack_iteration
+            if cur_alpha < alpha:
+                cur_alpha = alpah
 
         if val_adv_acc > highest_acc and args.save_model:
             highest_acc = val_adv_acc

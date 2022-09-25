@@ -68,6 +68,7 @@ def main():
     train_loader, test_loader = get_loaders(args.data_dir, args.batch_size)
     epsilon = (args.epsilon / 255.)
     alpha = (args.alpha / 255.)
+    cur_alpha = (args.alpha / 255.)
     init_tau = (args.init_tau / 255.)
 
     if args.normalization == 'std':
@@ -110,6 +111,7 @@ def main():
     # Training
     nb_replay = 1
     highest_acc = 0
+    highest_idx = 0
     train_time = 0
     logger.info('Epoch \t Seconds \t LR \t BP \t Train Loss \t Train Acc \t Val Acc \t MG \t CW Acc')
     for epoch in range(args.epochs):
@@ -132,14 +134,15 @@ def main():
                 delta.data = init_tau*temp
             delta= clamp(delta, lower_limit - X, upper_limit - X)
             delta.requires_grad = True
-            
+
+
             for rr in range(nb_replay):
                 output = model(normalize(X + delta[:X.size(0)], mu, std))
                 loss = F.cross_entropy(output, y)
                 opt.zero_grad()
                 loss.backward()
                 grad = delta.grad.detach()
-                delta.data =  torch.clamp(delta + alpha * torch.sign(grad), min=-epsilon, max=epsilon)
+                delta.data =  torch.clamp(delta + cur_alpha * torch.sign(grad), min=-epsilon, max=epsilon)
                 delta.data[:X.size(0)] = clamp(delta[:X.size(0)], lower_limit - X, upper_limit - X)
                 opt.step()
                 if rr + 1 < nb_replay:
@@ -183,11 +186,17 @@ def main():
 
         if epoch == 0:
             nb_replay += 1
+            cur_alpha = epsilon / nb_replay
+            if cur_alpha < alpha:
+                cur_alpha = alpha
         elif epoch == 1:
             increase_threshold = args.gamma * grad_mag
         elif grad_mag > increase_threshold and nb_replay < args.max_iteration:
             increase_threshold = args.gamma * grad_mag
             nb_replay += 1
+            cur_alpha = epsilon / nb_replay
+            if cur_alpha < alpha:
+                cur_alpha = alpha
 
         if val_adv_acc > highest_acc and args.save_model:
             highest_acc = val_adv_acc

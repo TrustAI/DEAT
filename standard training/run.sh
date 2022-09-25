@@ -1,18 +1,19 @@
-cuda='0'
+cuda='3'
 model='pre'
+root='./new_results/'
 model_name='model_'$model
 methods_list1='
+mpgd
 mtrades
+mmart
+mdeat
 '
-# mmart
-# mpgd
-# mdeat
 
 for method in $methods_list1; do
     train_method=${method}"_cifar10.py"
-    out_dir=${method}"_out"
+    out_dir=${root}${method}"_out"
 
-    CUDA_VISIBLE_DEVICES=$cuda python $train_method --alpha 2 --lr-max 0.05 --model $model --out-dir $out_dir --fname 'output_'$model --save-model
+    CUDA_VISIBLE_DEVICES=$cuda python $train_method --alpha 2 --lr-max 0.05 --epochs 5 --model $model --out-dir $out_dir --fname 'output_'$model #--save-model
 #     CUDA_VISIBLE_DEVICES=$cuda python autoattack_cifar10.py --model $model --model-dir $out_dir --model-name $model_name --log-name 'aa_score_'$model
 done
 
