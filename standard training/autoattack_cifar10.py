@@ -78,6 +78,9 @@ elif args.model == 'vgg16':
     net = VGG16().cuda()
 elif args.model == 'dense':
     net = DenseNet121().cuda()
+elif args.model == 'wide':
+    net = WideResNet(34, 10, widen_factor=10, dropRate=0.0).cuda()
+
 net = torch.nn.DataParallel(net).cuda()
 net.load_state_dict(checkpoint)
 model_test = nn.Sequential(Normalize(mean=mean, std=std), net)

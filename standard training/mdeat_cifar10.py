@@ -89,7 +89,7 @@ def main():
     elif args.model == 'dense':
         model = DenseNet121().cuda()
     elif args.model == 'wide':
-        model = WideResNet(34, 10, widen_factor=args.wide_factor, dropRate=0.0)
+        model = WideResNet(34, 10, widen_factor=args.wide_factor, dropRate=0.0).cuda()
     model = torch.nn.DataParallel(model).cuda()
     model.train()
     opt = torch.optim.SGD(model.parameters(), lr=args.lr_max, momentum=args.momentum, weight_decay=args.weight_decay)
@@ -111,7 +111,7 @@ def main():
     nb_replay = 1
     highest_acc = 0
     train_time = 0
-    logger.info('Epoch \t Seconds \t LR \t \t Train Loss \t Train Acc \t Val Acc \t MG \t CW Acc')
+    logger.info('Epoch \t Seconds \t LR \t BP \t Train Loss \t Train Acc \t Val Acc \t MG \t CW Acc')
     for epoch in range(args.epochs):
         start_epoch_time = time.time()
         train_loss = 0
@@ -155,13 +155,6 @@ def main():
         epoch_time = epoch_end_time - start_epoch_time
         train_time += epoch_time
         lr = scheduler.get_last_lr()[0]
-        if epoch == 0:
-            nb_replay += 1
-        elif epoch == 1:
-            increase_threshold = args.gamma * grad_mag
-        elif grad_mag > increase_threshold and nb_replay < args.max_iteration:
-            increase_threshold = args.gamma * grad_mag
-            nb_replay += 1
         
         # Evaluation
         if args.model == 'pre':
@@ -181,9 +174,20 @@ def main():
 
         val_adv_loss, val_adv_acc = evaluate_pgd(test_loader, model_test, mu, std, 10, 1, val=20, use_CWloss=True)
         val_loss, val_acc = evaluate_standard(test_loader, model_test, mu, std, val=20)
-        logger.info('%d \t %.1f \t \t %.4f \t %.4f \t %.4f \t %.4f\t %.4f \t %.4f',
-            epoch, epoch_time, lr, train_loss/train_n, train_acc/train_n, val_acc,
-            grad_mag, val_adv_acc)
+        # logger.info('%d \t %.1f \t \t %.4f \t %.4f \t %.4f \t %.4f\t %.4f \t %.4f',
+        #     epoch, epoch_time, lr, train_loss/train_n, train_acc/train_n, val_acc,
+        #     grad_mag, val_adv_acc)
+
+        logger.info(f'{epoch}\t{epoch_time:.1f}\t{lr:.4f}\t{nb_replay:d}\t{train_loss/train_n:.4f}\t{train_acc/train_n:.4f}\t{val_acc:.4f}\t{grad_mag:.4f}\t{val_adv_acc:.4f}')
+
+
+        if epoch == 0:
+            nb_replay += 1
+        elif epoch == 1:
+            increase_threshold = args.gamma * grad_mag
+        elif grad_mag > increase_threshold and nb_replay < args.max_iteration:
+            increase_threshold = args.gamma * grad_mag
+            nb_replay += 1
 
         if val_adv_acc > highest_acc and args.save_model:
             highest_acc = val_adv_acc

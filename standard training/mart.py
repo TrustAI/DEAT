@@ -102,10 +102,10 @@ def mmart_loss(model,
             delta.data =  torch.clamp(delta + step_size * torch.sign(grad), min=-epsilon, max=epsilon)
             # delta.data = clamp(delta + step_size * torch.sign(grad), -epsilon, epsilon)
             delta.data[:x_natural.size(0)] = clamp(delta[:x_natural.size(0)], lower_limit - x_natural, upper_limit - x_natural)
-            if rr + 1 < perturb_steps:
-                delta.grad.zero_()
-                continue
-            grad_mag += torch.sum(grad.abs()*std)
+            delta.grad.zero_()
+            # if rr + 1 < perturb_steps:
+            #     continue
+            # grad_mag += torch.sum(grad.abs()*std)
     else:
         x_adv = torch.clamp(x_adv, 0.0, 1.0)
     model.train()
@@ -134,4 +134,4 @@ def mmart_loss(model,
         torch.sum(kl(torch.log(adv_probs + 1e-12), nat_probs), dim=1) * (1.0000001 - true_probs))
     loss = loss_adv + float(beta) * loss_robust
 
-    return loss, grad_mag
+    return loss

@@ -91,8 +91,8 @@ def train(args, model, device, train_loader, optimizer, epoch):
                            beta=args.beta)
         loss.backward()
         optimizer.step()
-    train_loss += loss.item() * target.size(0)
-    train_n += target.size(0)
+        train_loss += loss.item() * target.size(0)
+        train_n += target.size(0)
     return train_loss, train_n
 
 
