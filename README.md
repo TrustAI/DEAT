@@ -55,3 +55,5 @@ We believe that the ultimate goal of this direction would be an efficient advers
 Besides, the potential collaboration between our strategy and other efficient adversarial training methods is also an exciting and practical topic.
 For example, YOPO only uses the first layer to generate training perturbation, and Amata adjusts adversarial step size along with the number of iterations.
 These unique properties might be able integrated into our acceleration strategy and further boost the training efficiency.
+
+-- Fu Wang & Wenjie Ruan
